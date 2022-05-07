@@ -1,68 +1,84 @@
-# easy-cyclisme-app
+# Laravel Breeze - Next.js Edition 🏝️
 
-## Build Setup
+## Introduction
+
+This repository is an implementing of the [Laravel Breeze](https://laravel.com/docs/starter-kits) application / authentication starter kit frontend in [Next.js](https://nextjs.org). All of the authentication boilerplate is already written for you - powered by [Laravel Sanctum](https://laravel.com/docs/sanctum), allowing you to quickly begin pairing your beautiful Next.js frontend with a powerful Laravel backend.
+
+## Official Documentation
+
+### Installation
+
+First, create a Next.js compatible Laravel backend by installing Laravel Breeze into a [fresh Laravel application](https://laravel.com/docs/installation) and installing Breeze's API scaffolding:
 
 ```bash
-# install dependencies
-$ npm install
+# Create the Laravel application...
+laravel new next-backend
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+cd next-backend
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+# Install Breeze and dependencies...
+composer require laravel/breeze
 
-# generate static project
-$ npm run generate
+php artisan breeze:install api
 ```
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+Next, ensure that your application's `APP_URL` and `FRONTEND_URL` environment variables are set to `http://localhost:8000` and `http://localhost:3000`, respectively.
 
-## Special Directories
+After defining the appropriate environment variables, you may serve the Laravel application using the `serve` Artisan command:
 
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
+```bash
+# Serve the application...
+php artisan serve
+```
 
-### `assets`
+Next, clone this repository and install its dependencies with `yarn install` or `npm install`. Then, copy the `.env.example` file to `.env.local` and supply the URL of your backend:
 
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
+```
+NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
+```
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
+Finally, run the application via `npm run dev`. The application will be available at `http://localhost:3000`:
 
-### `components`
+```
+npm run dev
+```
 
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
+> Note: Currently, we recommend using `localhost` during local development of your backend and frontend to avoid CORS "Same-Origin" issues.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
+### Authentication Hook
 
-### `layouts`
+This Next.js application contains a custom `useAuth` React hook, designed to abstract all authentication logic away from your pages. In addition, the hook can be used to access the currently authenticated user:
 
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
+```js
+const ExamplePage = () => {
+    const { logout, user } = useAuth({ middleware: 'auth' })
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
+    return (
+        <>
+            <p>{user?.name}</p>
 
-### `pages`
+            <button onClick={logout}>Sign out</button>
+        </>
+    )
+}
 
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
+export default ExamplePage
+```
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
+> Note: You will need to use [optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) (`user?.name` instead of `user.name`) when accessing properties on the user object to account for Next.js's initial server-side render.
 
-### `plugins`
+## Contributing
 
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
+Thank you for considering contributing to Breeze Next! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
+## Code of Conduct
 
-### `static`
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-This directory contains your static files. Each file inside this directory is mapped to `/`.
+## Security Vulnerabilities
 
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
+Please review [our security policy](https://github.com/laravel/breeze-next/security/policy) on how to report security vulnerabilities.
 
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
+## License
 
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+Laravel Breeze Next is open-sourced software licensed under the [MIT license](LICENSE.md).
