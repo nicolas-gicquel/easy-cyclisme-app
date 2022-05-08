@@ -53,8 +53,8 @@ const Navigation = ({ user }) => {
                                 Disciplines
                             </NavLink>
                             <NavLink
-                                href="/cyclistsCategory"
-                                active={router.pathname === '/cyclistsCategory'}>
+                                href="/cyclistsCategories"
+                                active={router.pathname === '/cyclistsCategories'}>
                                 Catégories
                             </NavLink>
                         </div>
