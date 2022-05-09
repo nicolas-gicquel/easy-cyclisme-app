@@ -19,9 +19,11 @@ const Ajouter = () => {
     // const [category, setCategory] = useState();
     const [selectedOption, setSelectedOption] = useState("");
     const [clubs, setClubs] = useState([]);
+    const [disciplines, setDisciplines] = useState([]);
 
     useEffect(() => {
         url();
+            getDisciplines();
     }, []) // Sans les crochets ça tourne en boucle
 
     const url = async () => {
@@ -31,6 +33,16 @@ const Ajouter = () => {
                 setClubs(res.data.data);
             });
     }
+
+    const getDisciplines = async () => {
+        await axios.get('/api/discipline')
+            .then(res => {
+                console.log("axios :", res.data.data[0].name_discipline);
+                setDisciplines(res.data.data);
+            });
+    }
+
+
 
     // Méthode POST
     const submitForm = async (event) => {
@@ -88,23 +100,21 @@ const Ajouter = () => {
                                     </div>
                                     <div className="mt-4">
                                         <Label htmlFor="club">Club organisateur</Label>
-                                        <select name="club_id" class="form-select appearance-none block w-full px-3
-      py-1.5
-      text-base
-      font-normal
-      text-gray-700
-      bg-white bg-clip-padding bg-no-repeat
-      border border-solid border-gray-300
-      rounded
-      transition
-      ease-in-out
-      m-0
-      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-          <option selected>Selectionner un club</option>
-          {clubs.map((club) => (
-              <option value={club.id}>{club.name_club}</option>
-               ))}
-      </select>
+                                        <select name="club_id" class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                                            <option selected>Selectionner un club</option>
+                                            {clubs.map((club) => (
+                                                <option value={club.id}>{club.name_club}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="mt-4">
+                                        <Label htmlFor="discipline">Discipline concernée</Label>
+                                        <select name="discipline_id" class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                                            <option selected>Selectionner une discipline</option>
+                                            {disciplines.map((discipline) => (
+                                                <option value={discipline.id}>{discipline.name_discipline}</option>
+                                            ))}
+                                        </select>
                                     </div>
                                     <div className="mt-4">
                                         <Label htmlFor="date">
