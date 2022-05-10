@@ -20,10 +20,12 @@ const Ajouter = () => {
     const [selectedOption, setSelectedOption] = useState("");
     const [clubs, setClubs] = useState([]);
     const [disciplines, setDisciplines] = useState([]);
+    const [cyclistsCategories, setCyclistsCategories] = useState([]);
 
     useEffect(() => {
         url();
             getDisciplines();
+            getCyclistsCategories();
     }, []) // Sans les crochets ça tourne en boucle
 
     const url = async () => {
@@ -42,20 +44,43 @@ const Ajouter = () => {
             });
     }
 
+    const getCyclistsCategories = async () => {
+        await axios.get('/api/cyclists_category')
+            .then(res => {
+                setCyclistsCategories(res.data.data);
+            });
+    }
+
 
 
     // Méthode POST
     const submitForm = async (event) => {
         event.preventDefault(); // Je contrôle ma requête
-        // console.log(event.target[1].files);
+
+        //Je récupère les valeurs des checkbox
+        const categories = document.getElementsByName('cyclistsCategories');
+  const cyclistsCategories = [];
+     for (var i = 0; i < categories.length; i++) {
+        if (categories[i].checked) {
+            cyclistsCategories.push(categories[i].value);
+        }
+     }
+     
 
         const form = document.getElementById('addCompetition');
-        console.log('form', form);
+
         const data = new FormData(form)
-        console.log(data);
+        data.append('categories',cyclistsCategories.join())
+        // Affiche le contenu envoyer par le formulaire
+        // for (var pair of data.entries()) {
+        //     console.log(pair[0]+ ', ' + pair[1]); 
+        // }
+
         const ajouterCompetition = async () => {
+            
             await axios
                 .post('/api/competition', data, { headers: { "Content-Type": "multipart/form-data" } })
+                
                 .then(res => {
                     router.push('/competitions')
                 })
@@ -115,6 +140,15 @@ const Ajouter = () => {
                                                 <option value={discipline.id}>{discipline.name_discipline}</option>
                                             ))}
                                         </select>
+                                    </div>
+                                    <div className="mt-4">
+                                        <Label htmlFor="discipline">Catégories concernées</Label>
+                                        {cyclistsCategories.map((cyclistsCategory) => (
+                                        <div class="form-check">  
+                                                <input name="cyclistsCategories"class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" type="checkbox"  value={cyclistsCategory.id} id="flexCheckDefault"/>
+                                                <label class="form-check-label inline-block text-gray-800" for="flexCheckDefault">{cyclistsCategory.name_cyclists_category}</label>
+                                                </div>
+                                            ))}   
                                     </div>
                                     <div className="mt-4">
                                         <Label htmlFor="date">
