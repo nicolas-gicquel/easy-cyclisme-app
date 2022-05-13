@@ -23,18 +23,9 @@ const Home = () => {
     const [cyclistsCategories, setCyclistsCategories] = useState([]);
 
     useEffect(() => {
-        // getCompetitions();
         getDisciplines();
         getCyclistsCategories();
     }, [])
-
-    // const getCompetitions = async () => {
-    //     await axios.get('/api/competition')
-    //         .then(res => {
-    //             // console.log("axios :", res.data);
-    //             setCompetitions(res.data.data);
-    //         });
-    // }
 
     const getDisciplines = async () => {
         await axios.get('/api/discipline')
@@ -55,44 +46,28 @@ const Home = () => {
     const submitForm = async (event) => {
         event.preventDefault(); // Je contrôle ma requête
 
-        //Je récupère les valeurs des checkbox
-        // const categories = document.getElementsByName('cyclistsCategories');
-        // const cyclistsCategories = [];
-        // for (var i = 0; i < categories.length; i++) {
-        //     if (categories[i].checked) {
-        //         cyclistsCategories.push(categories[i].value);
-        //     }
-        // }
+        const discipline = document.getElementById('discipline').value;
+        const cyclistsCategory = document.getElementById('cyclistsCategory').value;
+        const dateCompetition = document.getElementById('dateCompetition').value;
 
-
-        const form = document.getElementById('addCompetition');
-
-        const data = new FormData(form)
-        // data.append('categories', cyclistsCategories.join())
-        // Affiche le contenu envoyer par le formulaire
-        // for (var pair of data.entries()) {
-        //     console.log(pair[0]+ ', ' + pair[1]); 
-        // }
-
-        const ajouterCompetition = async () => {
+        const searchCompetition = async () => {
 
             await axios
-                .get('/api/search', data, { headers: { "Content-Type": "multipart/form-data" } })
+                .get('/api/search?discipline_id=' + discipline + '&cyclists_category_id=' + cyclistsCategory + '&date_competition=' + dateCompetition)
 
                 .then(res => {
-                    // router.push('/competitions')
                     setCompetitions(res.data.data)
                 })
                 .catch(error => {
                     // setErrors(error)
                     // if (error.response.status !== 409) throw error
-                    console.log(error)
                 })
         }
-        ajouterCompetition();
+
+        searchCompetition();
     };
 
-    
+
 
 
     return (
@@ -107,7 +82,7 @@ const Home = () => {
                     <div class="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
                         <a class="text-gray-600 no-underline hover:no-underline" href="#">
                             <div class="flex flex-col text-2xl pl-2 sm:h-20 sm:flex-row sm:text-4xl">
-                                <ApplicationLogo/>
+                                <ApplicationLogo />
                                 <h1 class="text-center sm:mt-5">Easy Cyclisme</h1>
                             </div>
                         </a>
@@ -130,24 +105,24 @@ const Home = () => {
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div className="px-2 py-6 md:px-6 py-6 bg-white border-b border-gray-200">
-                                <form onSubmit={submitForm} id="addCompetition">
-                                    
-                                    
+                                <form onSubmit={submitForm} id="searchCompetition">
+
+
                                     <div className="mt-4">
                                         <Label htmlFor="discipline">Discipline concernée</Label>
-                                        <select name="discipline_id" class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                                            <option selected>Selectionner une discipline</option>
+                                        <select id="discipline" class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                                            <option value="" selected>Selectionner une discipline</option>
                                             {disciplines.map((discipline) => (
                                                 <option value={discipline.id}>{discipline.name_discipline}</option>
                                             ))}
                                         </select>
                                     </div>
                                     <div className="mt-4">
-                                        <Label htmlFor="discipline">Discipline concernée</Label>
-                                        <select name="discipline_id" class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                                            <option selected>Selectionner une catégorie</option>
+                                        <Label htmlFor="discipline">Catégorie concernée</Label>
+                                        <select id="cyclistsCategory" class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
+                                            <option value="" selected>Selectionner une catégorie</option>
                                             {cyclistsCategories.map((cyclistsCategory) => (
-                                                <option value={cyclistsCategories.id}>{cyclistsCategory.name_cyclists_category}</option>
+                                                <option value={cyclistsCategory.id}>{cyclistsCategory.name_cyclists_category}</option>
                                             ))}
                                         </select>
                                     </div>
@@ -156,13 +131,13 @@ const Home = () => {
                                             Date de la compétition
                                         </Label>
                                         <Input
-                                            name="date_competition"
+                                            id="dateCompetition"
                                             type="date"
                                             className="mt-1 block w-full"
                                             required
                                         />
                                     </div>
-                                    
+
                                     <div className="flex items-center justify-end mt-4">
                                         <Button className="ml-4">Rechercher</Button>
                                     </div>
@@ -180,7 +155,7 @@ const Home = () => {
             <div class="bg-slate-100 h-screen">
                 <div class="container mx-auto pt-24 md:pt-16 px-6">
                     <div id="map">
-                        <EasyMap competitions={competitions}/>
+                        <EasyMap competitions={competitions} />
                     </div>
                     <div className="row my-4">
 
@@ -190,30 +165,30 @@ const Home = () => {
 
             <table class="border-collapse table-auto w-full text-sm">
                 <thead>
-                  <tr>
-                    <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Date</th>
-                    <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Compétition</th>
-                    <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Adresse du départ</th>
-                    <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">CP</th>
-                    <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Ville</th>
-                    <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-center">Actions</th>
-                  </tr>
+                    <tr>
+                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Date</th>
+                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Compétition</th>
+                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Adresse du départ</th>
+                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">CP</th>
+                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Ville</th>
+                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-center">Actions</th>
+                    </tr>
                 </thead>
                 <tbody class="bg-white dark:bg-slate-800">
-                  {competitions.map((competition) => (
-                    <tr>
-                      <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.date_competition}</td>
-                      <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.name_competition}</td>
-                      <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.address_competition}</td>
-                      <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.postal_code_competition}</td>
-                      <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.city_competition}</td>
-                      
+                    {competitions.map((competition) => (
+                        <tr>
+                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.date_competition}</td>
+                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.name_competition}</td>
+                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.address_competition}</td>
+                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.postal_code_competition}</td>
+                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.city_competition}</td>
 
 
-                    </tr>
-                  ))}
+
+                        </tr>
+                    ))}
                 </tbody>
-              </table>
+            </table>
 
             <footer>
 
