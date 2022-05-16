@@ -1,18 +1,19 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useAuth } from '@/hooks/auth'
+// import { useAuth } from '@/hooks/auth'
 import { useState, useEffect } from 'react'
 import axios from '@/lib/axios'
 import ApplicationLogo from '@/components/ApplicationLogo'
 import Input from '@/components/Input'
 import Label from '@/components/Label'
 import Button from '@/components/Button'
+import Footer from '@/components/Footer'
 import dynamic from "next/dynamic";
 
 
 const Home = () => {
 
-    const { user } = useAuth({ middleware: 'guest' })
+    // const { user } = useAuth({ middleware: 'guest' })
     const EasyMap = dynamic(() =>
         import("../components/EasyMap"), {
         ssr: false
@@ -190,10 +191,7 @@ const Home = () => {
                 </tbody>
             </table>
 
-            <footer>
-
-
-            </footer>
+            <Footer />
 
         </>
     )
