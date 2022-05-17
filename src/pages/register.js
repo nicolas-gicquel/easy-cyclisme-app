@@ -44,7 +44,7 @@ const Register = () => {
                 <form onSubmit={submitForm}>
                     {/* Name */}
                     <div>
-                        <Label htmlFor="name">Name</Label>
+                        <Label htmlFor="name">Nom</Label>
 
                         <Input
                             id="name"
@@ -59,7 +59,7 @@ const Register = () => {
 
                     {/* Email Address */}
                     <div className="mt-4">
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="email">Adresse mail</Label>
 
                         <Input
                             id="email"
@@ -73,7 +73,7 @@ const Register = () => {
 
                     {/* Password */}
                     <div className="mt-4">
-                        <Label htmlFor="password">Password</Label>
+                        <Label htmlFor="password">Mot de passe</Label>
 
                         <Input
                             id="password"
@@ -89,7 +89,7 @@ const Register = () => {
                     {/* Confirm Password */}
                     <div className="mt-4">
                         <Label htmlFor="password_confirmation">
-                            Confirm Password
+                            Confirmation du mot de passe
                         </Label>
 
                         <Input
@@ -107,11 +107,11 @@ const Register = () => {
                     <div className="flex items-center justify-end mt-4">
                         <Link href="/login">
                             <a className="underline text-sm text-gray-600 hover:text-gray-900">
-                                Already registered?
+                                Déjà inscrit?
                             </a>
                         </Link>
 
-                        <Button className="ml-4">Register</Button>
+                        <Button className="ml-4">S'inscrire</Button>
                     </div>
                 </form>
             </AuthCard>
