@@ -67,7 +67,7 @@ const Clubs = () => {
                       <div key={club.id} className="group relative">
                         <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                           <img
-                            src={`http://localhost:8000/api/logo/${club.logo_club}`}                            className="w-full h-full object-center object-cover lg:w-full lg:h-full"
+                            src={`http://localhost:8000/api/logo/${club.logo_club}`}  className="w-full h-full object-center object-cover lg:w-full lg:h-full"
                           />
                         </div>
                         <div className="mt-4 flex justify-between">

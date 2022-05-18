@@ -75,7 +75,7 @@ const Home = () => {
         <>
             <Head>
                 <title>Easy Cyclisme</title>
-
+                <meta name="description" content="Moteur de recherche de courses et compétions de cyclisme en Bretagne et Pays de la Loire"></meta>
             </Head>
 
             <nav class="bg-white p-2 mt-0 w-full drop-shadow">

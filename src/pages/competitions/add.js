@@ -13,10 +13,6 @@ const Ajouter = () => {
     // Route
     const router = useRouter();
 
-    // Hook pour le name
-    // const [name, setName] = useState();
-    // const [image, setImage] = useState();
-    // const [category, setCategory] = useState();
     const [selectedOption, setSelectedOption] = useState("");
     const [clubs, setClubs] = useState([]);
     const [disciplines, setDisciplines] = useState([]);
@@ -53,7 +49,7 @@ const Ajouter = () => {
 
 
 
-    // Méthode POST
+    // Création de compétions
     const submitForm = async (event) => {
         event.preventDefault(); // Je contrôle ma requête
 
@@ -66,9 +62,10 @@ const Ajouter = () => {
             }
         }
 
-
+        //Je cible mon formulaire
         const form = document.getElementById('addCompetition');
 
+        //Je récupère la donné du formulaire
         const data = new FormData(form)
         data.append('categories', cyclistsCategories.join())
         // Affiche le contenu envoyer par le formulaire
@@ -76,6 +73,7 @@ const Ajouter = () => {
         //     console.log(pair[0]+ ', ' + pair[1]); 
         // }
 
+        //J'envoie les données à l'API
         const ajouterCompetition = async () => {
 
             await axios
@@ -85,9 +83,9 @@ const Ajouter = () => {
                     router.push('/competitions')
                 })
                 .catch(error => {
-                    // setErrors(error)
-                    // if (error.response.status !== 409) throw error
-                    console.log(error)
+                    setErrors(error)
+                    if (error.response.status !== 409) throw error
+ 
                 })
         }
         ajouterCompetition();

@@ -16,28 +16,24 @@ const Competitions = () => {
   console.log("avant useEffect", competitions)
 
   useEffect(() => {
-    url();
-  }, []) // Sans les crochets ça tourne en boucle
+    getCompetitions();
+  }, []) 
 
-  const url = async () => {
+  // Récupération des compétitions
+  const getCompetitions = async () => {
     await axios.get('/api/competition')
       .then(res => {
-        // console.log("axios :", res.data);
         setCompetitions(res.data.data);
       });
   }
 
-  // Supprimer un sport
-
+  // Supprimer une compétition
   const deleteCompetition = (competitionID) => {
-    // console.log("l'id sport à supprimer est", sportID);
     axios
       .delete(`/api/competition/${competitionID}`)
       .then(res => {
-        url()
+        getCompetitions()
       })
-
-
   }
 
   return (
