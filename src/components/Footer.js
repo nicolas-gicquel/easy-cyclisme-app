@@ -11,9 +11,8 @@ const Footer = props => (
             {/* </div> */}
         </div>
 
-        <div class="text-center p-4" >
-            © 2021 Copyright:
-            <a class="text-white" href="https://tailwind-elements.com/">Tailwind Elements</a>
+        <div class="text-center p-4 w-full" >
+            © 2021 Copyright: <span>Nicolas  Gicquel</span> - <a class="text-white" href="/mentions-legales">Mentions Légales</a> - <a class="text-white" href="/politique-de-confidentialite">Politiques de confidentialité</a>
         </div>
     </footer>
 )
