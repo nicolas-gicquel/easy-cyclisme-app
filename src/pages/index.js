@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Link from 'next/link'
+
 // import { useAuth } from '@/hooks/auth'
 import { useState, useEffect } from 'react'
 import axios from '@/lib/axios'
@@ -8,93 +8,104 @@ import Input from '@/components/Input'
 import Label from '@/components/Label'
 import Button from '@/components/Button'
 import Footer from '@/components/Footer'
-import dynamic from "next/dynamic";
-
+import dynamic from 'next/dynamic'
 
 const Home = () => {
-
     // const { user } = useAuth({ middleware: 'guest' })
-    const EasyMap = dynamic(() =>
-        import("../components/EasyMap"), {
-        ssr: false
-    });
+    const EasyMap = dynamic(() => import('../components/EasyMap'), {
+        ssr: false,
+    })
 
-    const [competitions, setCompetitions] = useState([]);
-    const [disciplines, setDisciplines] = useState([]);
-    const [cyclistsCategories, setCyclistsCategories] = useState([]);
+    const [competitions, setCompetitions] = useState([])
+    const [disciplines, setDisciplines] = useState([])
+    const [cyclistsCategories, setCyclistsCategories] = useState([])
 
     useEffect(() => {
-        getDisciplines();
-        getCyclistsCategories();
+        getDisciplines()
+        getCyclistsCategories()
     }, [])
 
     const getDisciplines = async () => {
-        await axios.get('/api/discipline')
-            .then(res => {
-                // console.log("axios :", res.data);
-                setDisciplines(res.data.data);
-            });
+        await axios.get('/api/discipline').then(res => {
+            // console.log("axios :", res.data);
+            setDisciplines(res.data.data)
+        })
     }
 
     const getCyclistsCategories = async () => {
-        await axios.get('/api/cyclists_category')
-            .then(res => {
-                // console.log("axios :", res.data);
-                setCyclistsCategories(res.data.data);
-            });
+        await axios.get('/api/cyclists_category').then(res => {
+            // console.log("axios :", res.data);
+            setCyclistsCategories(res.data.data)
+        })
     }
 
-    const submitForm = async (event) => {
-        event.preventDefault(); // Je contrôle ma requête
+    const submitForm = async event => {
+        event.preventDefault() // Je contrôle ma requête
 
-        const discipline = document.getElementById('discipline').value;
-        const cyclistsCategory = document.getElementById('cyclistsCategory').value;
-        const dateCompetition = document.getElementById('dateCompetition').value;
+        const discipline = document.getElementById('discipline').value
+        const cyclistsCategory = document.getElementById('cyclistsCategory')
+            .value
+        const dateCompetition = document.getElementById('dateCompetition').value
 
         const searchCompetition = async () => {
-
             await axios
-                .get('/api/search?discipline_id=' + discipline + '&cyclists_category_id=' + cyclistsCategory + '&date_competition=' + dateCompetition)
+                .get(
+                    '/api/search?discipline_id=' +
+                        discipline +
+                        '&cyclists_category_id=' +
+                        cyclistsCategory +
+                        '&date_competition=' +
+                        dateCompetition,
+                )
 
-                .then(res => {
-                    setCompetitions(res.data.data)
-                })
+                .then(setCompetitions(res.data.data))
                 .catch(error => {
                     // setErrors(error)
-                    // if (error.response.status !== 409) throw error
+                    if (error.response.status !== 409) throw error
                 })
         }
 
-        searchCompetition();
-    };
-
-
-
+        searchCompetition()
+    }
 
     return (
         <>
             <Head>
                 <title>Easy Cyclisme</title>
-                <meta name="description" content="Moteur de recherche de courses et compétions de cyclisme en Bretagne et Pays de la Loire"></meta>
+                <meta
+                    name="description"
+                    content="Moteur de recherche de courses et compétions de cyclisme en Bretagne et Pays de la Loire"></meta>
             </Head>
 
             <nav class="bg-white p-2 mt-0 w-full drop-shadow">
                 <div class="container mx-auto flex flex-wrap items-center">
                     <div class="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
-                        <a class="text-gray-600 no-underline hover:no-underline" href="#">
+                        <a
+                            class="text-gray-600 no-underline hover:no-underline"
+                            href="#">
                             <div class="flex flex-col text-2xl pl-2 sm:h-20 sm:flex-row sm:text-4xl">
                                 <ApplicationLogo />
-                                <h1 class="text-center sm:mt-5">Easy Cyclisme</h1>
+                                <h1 class="text-center sm:mt-5">
+                                    Easy Cyclisme
+                                </h1>
                             </div>
                         </a>
                     </div>
                     <div class="flex w-full pt-2 content-center justify-between md:w-1/2 md:justify-end">
                         <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
                             <li class="mr-3">
-                                <a class="inline-block py-2 px-4 text-gray-600 no-underline" href="#">Accueil</a>
+                                <a
+                                    class="inline-block py-2 px-4 text-gray-600 no-underline"
+                                    href="#">
+                                    Accueil
+                                </a>
                             </li>
                             <li class="mr-3">
-                                <a class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4" href="#">Contact</a>
+                                <a
+                                    class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
+                                    href="#">
+                                    Contact
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -106,25 +117,50 @@ const Home = () => {
                     <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div className="px-2 py-6 md:px-6 py-6 bg-white border-b border-gray-200">
-                                <form onSubmit={submitForm} id="searchCompetition">
-
-
+                                <form
+                                    onSubmit={submitForm}
+                                    id="searchCompetition">
                                     <div className="mt-4">
-                                        <Label htmlFor="discipline">Discipline concernée</Label>
-                                        <select id="discipline" class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                                            <option value="" selected>Selectionner une discipline</option>
-                                            {disciplines.map((discipline) => (
-                                                <option value={discipline.id}>{discipline.name_discipline}</option>
+                                        <Label htmlFor="discipline">
+                                            Discipline concernée
+                                        </Label>
+                                        <select
+                                            id="discipline"
+                                            class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                            aria-label="Default select example">
+                                            <option value="" selected>
+                                                Selectionner une discipline
+                                            </option>
+                                            {disciplines.map(discipline => (
+                                                <option value={discipline.id}>
+                                                    {discipline.name_discipline}
+                                                </option>
                                             ))}
                                         </select>
                                     </div>
                                     <div className="mt-4">
-                                        <Label htmlFor="discipline">Catégorie concernée</Label>
-                                        <select id="cyclistsCategory" class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-                                            <option value="" selected>Selectionner une catégorie</option>
-                                            {cyclistsCategories.map((cyclistsCategory) => (
-                                                <option value={cyclistsCategory.id}>{cyclistsCategory.name_cyclists_category}</option>
-                                            ))}
+                                        <Label htmlFor="discipline">
+                                            Catégorie concernée
+                                        </Label>
+                                        <select
+                                            id="cyclistsCategory"
+                                            class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                            aria-label="Default select example">
+                                            <option value="" selected>
+                                                Selectionner une catégorie
+                                            </option>
+                                            {cyclistsCategories.map(
+                                                cyclistsCategory => (
+                                                    <option
+                                                        value={
+                                                            cyclistsCategory.id
+                                                        }>
+                                                        {
+                                                            cyclistsCategory.name_cyclists_category
+                                                        }
+                                                    </option>
+                                                ),
+                                            )}
                                         </select>
                                     </div>
                                     <div className="mt-4">
@@ -140,7 +176,9 @@ const Home = () => {
                                     </div>
 
                                     <div className="flex items-center justify-end mt-4">
-                                        <Button className="ml-4">Rechercher</Button>
+                                        <Button className="ml-4">
+                                            Rechercher
+                                        </Button>
                                     </div>
                                 </form>
                             </div>
@@ -149,62 +187,79 @@ const Home = () => {
                 </div>
             </div>
 
-
-
-
-
             <div class="bg-slate-100 h-screen">
                 <div class="container mx-auto pt-24 md:pt-16 px-6">
                     <div id="map">
                         <EasyMap competitions={competitions} />
                     </div>
-                    <div className="row my-4">
-
-                    </div>
+                    <div className="row my-4"></div>
                 </div>
             </div>
 
             <div className="py-12 bg-slate-100">
-        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-
-            <div className="p-6 bg-white border-b border-gray-200">
-
-                <table class="border-collapse table-auto w-full text-sm">
-                    <thead>
-                        <tr>
-                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Date</th>
-                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Compétition</th>
-                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Adresse du départ</th>
-                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">CP</th>
-                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Ville</th>
-                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-center">Détails</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white dark:bg-slate-800">
-                        {competitions.map((competition) => (
-                            <tr>
-                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.date_competition}</td>
-                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><span className="uppercase">{competition.city_competition}</span> - {competition.name_competition}</td>
-                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.address_competition}</td>
-                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.club.name_club}</td>
-                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.organization_details}</td>
-
-
-
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            </div>
-            </div>
+                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <div className="p-6 bg-white border-b border-gray-200">
+                            <table class="border-collapse table-auto w-full text-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                            Date
+                                        </th>
+                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                            Compétition
+                                        </th>
+                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                            Adresse du départ
+                                        </th>
+                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                            CP
+                                        </th>
+                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                            Ville
+                                        </th>
+                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-center">
+                                            Détails
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white dark:bg-slate-800">
+                                    {competitions.map(competition => (
+                                        <tr>
+                                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                                {competition.date_competition}
+                                            </td>
+                                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                                <span className="uppercase">
+                                                    {
+                                                        competition.city_competition
+                                                    }
+                                                </span>{' '}
+                                                - {competition.name_competition}
+                                            </td>
+                                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                                {
+                                                    competition.address_competition
+                                                }
+                                            </td>
+                                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                                {competition.club.name_club}
+                                            </td>
+                                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                                {
+                                                    competition.organization_details
+                                                }
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
             <Footer />
-
         </>
     )
 }
-export default Home;
-
-
+export default Home

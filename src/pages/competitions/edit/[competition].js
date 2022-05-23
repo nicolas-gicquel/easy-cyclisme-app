@@ -8,21 +8,20 @@ import Button from '@/components/Button'
 import { useRouter } from 'next/router'
 
 const Edit = ({ toto }) => {
-    console.log("params vaut :", toto)
+    console.log('params vaut :', toto)
 
     // Route
-    const router = useRouter();
+    const router = useRouter()
 
     // Hook pour le name
-    const [nameCompetition, setNameCompetition] = useState("");
-    const [dateCompetition, setDateCompetition] = useState("");
-    const [addressCompetition, setAdressCompetition] = useState("");
-    const [postalCodeCompetition, setPostalCodeCompetition] = useState("");
-    const [cityCompetition, setCityCompetition] = useState("");
-    const [latCompetition, setLatCompetition] = useState("");
-    const [lonCompetition, setLonCompetition] = useState("");
-    const [organizationalDetails, setOrganizationalDetails] = useState("");
-
+    const [nameCompetition, setNameCompetition] = useState('')
+    const [dateCompetition, setDateCompetition] = useState('')
+    const [addressCompetition, setAdressCompetition] = useState('')
+    const [postalCodeCompetition, setPostalCodeCompetition] = useState('')
+    const [cityCompetition, setCityCompetition] = useState('')
+    const [latCompetition, setLatCompetition] = useState('')
+    const [lonCompetition, setLonCompetition] = useState('')
+    const [organizationalDetails, setOrganizationalDetails] = useState('')
 
     useEffect(() => {
         getCompetition()
@@ -58,33 +57,29 @@ const Edit = ({ toto }) => {
     }
 
     // PUT - Mets à jour la fiche sport
-    const submitForm = async (event) => {
-        event.preventDefault();
+    const submitForm = async event => {
+        event.preventDefault()
         const updateCompetition = async () => {
-
             await axios
                 .put(`/api/competition/${toto}`, {
-                    "name_competition": nameCompetition,
-                    "date_competition": dateCompetition,
-                    "address_competition": addressCompetition,
-                    "postal_code_competition": postalCodeCompetition,
-                    "city_competition": cityCompetition,
-                    "lat_competition": latCompetition,
-                    "lon_competition": lonCompetition,
-                    "organizational_details": organizationalDetails
+                    name_competition: nameCompetition,
+                    date_competition: dateCompetition,
+                    address_competition: addressCompetition,
+                    postal_code_competition: postalCodeCompetition,
+                    city_competition: cityCompetition,
+                    lat_competition: latCompetition,
+                    lon_competition: lonCompetition,
+                    organizational_details: organizationalDetails,
                 })
-                .then(res => {
-                    router.push('/competitions')
-                })
+                .then(router.push('/competitions'))
                 .catch(error => {
                     // setErrors(error)
                     if (error.response.status !== 409) throw error
                     console.log(error)
                 })
         }
-        updateCompetition();
-    };
-
+        updateCompetition()
+    }
 
     return (
         <AppLayout
@@ -93,11 +88,9 @@ const Edit = ({ toto }) => {
                     Modification d'une compétition
                 </h2>
             }>
-
             <Head>
                 <title>Easy-Cyclisme - Compétition</title>
             </Head>
-
 
             <div className="flex flex-col">
                 <div className="py-12">
@@ -105,7 +98,6 @@ const Edit = ({ toto }) => {
                         <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div className="px-2 py-6 md:px-6 py-6 bg-white border-b border-gray-200">
                                 <form onSubmit={submitForm}>
-
                                     <div className="mt-4">
                                         <Label htmlFor="name">
                                             Nom de la compétition
@@ -115,11 +107,11 @@ const Edit = ({ toto }) => {
                                             type="text"
                                             value={`${nameCompetition}`}
                                             className="mt-1 block w-full"
-                                            onChange={
-                                                event => {
-                                                    setNameCompetition(event.target.value);
-                                                }
-                                            }
+                                            onChange={event => {
+                                                setNameCompetition(
+                                                    event.target.value,
+                                                )
+                                            }}
                                             required
                                         />
                                     </div>
@@ -133,11 +125,11 @@ const Edit = ({ toto }) => {
                                             type="date"
                                             value={`${dateCompetition}`}
                                             className="mt-1 block w-full"
-                                            onChange={
-                                                event => {
-                                                    setNameCompetition(event.target.value);
-                                                }
-                                            }
+                                            onChange={event => {
+                                                setNameCompetition(
+                                                    event.target.value,
+                                                )
+                                            }}
                                             required
                                         />
                                     </div>
@@ -151,11 +143,11 @@ const Edit = ({ toto }) => {
                                             type="text"
                                             value={`${addressCompetition}`}
                                             className="mt-1 block w-full"
-                                            onChange={
-                                                event => {
-                                                    setAdressCompetition(event.target.value);
-                                                }
-                                            }
+                                            onChange={event => {
+                                                setAdressCompetition(
+                                                    event.target.value,
+                                                )
+                                            }}
                                             required
                                         />
                                     </div>
@@ -169,29 +161,27 @@ const Edit = ({ toto }) => {
                                             type="text"
                                             value={`${postalCodeCompetition}`}
                                             className="mt-1 block w-full"
-                                            onChange={
-                                                event => {
-                                                    setPostalCodeCompetition(event.target.value);
-                                                }
-                                            }
+                                            onChange={event => {
+                                                setPostalCodeCompetition(
+                                                    event.target.value,
+                                                )
+                                            }}
                                             required
                                         />
                                     </div>
 
                                     <div className="mt-4">
-                                        <Label htmlFor="city">
-                                            Ville
-                                        </Label>
+                                        <Label htmlFor="city">Ville</Label>
                                         <Input
                                             name="city_competition"
                                             type="text"
                                             value={`${cityCompetition}`}
                                             className="mt-1 block w-full"
-                                            onChange={
-                                                event => {
-                                                    setCityCompetition(event.target.value);
-                                                }
-                                            }
+                                            onChange={event => {
+                                                setCityCompetition(
+                                                    event.target.value,
+                                                )
+                                            }}
                                             required
                                         />
                                     </div>
@@ -205,11 +195,11 @@ const Edit = ({ toto }) => {
                                             type="text"
                                             value={`${latCompetition}`}
                                             className="mt-1 block w-full"
-                                            onChange={
-                                                event => {
-                                                    setLatCompetition(event.target.value);
-                                                }
-                                            }
+                                            onChange={event => {
+                                                setLatCompetition(
+                                                    event.target.value,
+                                                )
+                                            }}
                                             required
                                         />
                                     </div>
@@ -223,11 +213,11 @@ const Edit = ({ toto }) => {
                                             type="text"
                                             value={`${lonCompetition}`}
                                             className="mt-1 block w-full"
-                                            onChange={
-                                                event => {
-                                                    setLonCompetition(event.target.value);
-                                                }
-                                            }
+                                            onChange={event => {
+                                                setLonCompetition(
+                                                    event.target.value,
+                                                )
+                                            }}
                                             required
                                         />
                                     </div>
@@ -241,19 +231,21 @@ const Edit = ({ toto }) => {
                                             type="text"
                                             value={`${organizationalDetails}`}
                                             className="mt-1 block w-full"
-                                            onChange={
-                                                event => {
-                                                    setOrganizationalDetails(event.target.value);
-                                                }
-                                            }
-                                            
+                                            onChange={event => {
+                                                setOrganizationalDetails(
+                                                    event.target.value,
+                                                )
+                                            }}
                                         />
                                     </div>
 
-
                                     <div className="flex items-center justify-end mt-4">
-                                        <a href="http://localhost:3000/competitions">retour</a>
-                                        <Button className="ml-4">Mettre à jour</Button>
+                                        <a href="http://localhost:3000/competitions">
+                                            retour
+                                        </a>
+                                        <Button className="ml-4">
+                                            Mettre à jour
+                                        </Button>
                                     </div>
                                 </form>
                             </div>

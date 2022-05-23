@@ -8,15 +8,11 @@ import Button from '@/components/Button'
 import { useRouter } from 'next/router'
 
 const Edit = ({ toto }) => {
-
-
     // Route
-    const router = useRouter();
+    const router = useRouter()
 
     // Hook pour le name
-    const [namecyclistsCategory, setNameCyclistsCategory] = useState("");
-
-
+    const [namecyclistsCategory, setNameCyclistsCategory] = useState('')
 
     useEffect(() => {
         getCyclistsCategory()
@@ -38,26 +34,22 @@ const Edit = ({ toto }) => {
     }
 
     // PUT - Mets à jour la fiche sport
-    const submitForm = async (event) => {
-        event.preventDefault();
+    const submitForm = async event => {
+        event.preventDefault()
         const updateCyclistsCategory = async () => {
-
             await axios
                 .put(`/api/cyclists_category/${toto}`, {
-                    "name_cyclists_category": namecyclistsCategory,
+                    name_cyclists_category: namecyclistsCategory,
                 })
-                .then(res => {
-                    router.push('/cyclistsCategories')
-                })
+                .then(router.push('/cyclistsCategories'))
                 .catch(error => {
                     // setErrors(error)
                     if (error.response.status !== 409) throw error
                     console.log(error)
                 })
         }
-        updateCyclistsCategory();
-    };
-
+        updateCyclistsCategory()
+    }
 
     return (
         <AppLayout
@@ -66,11 +58,9 @@ const Edit = ({ toto }) => {
                     Modification d'une compétition
                 </h2>
             }>
-
             <Head>
                 <title>Easy-Cyclisme - Compétition</title>
             </Head>
-
 
             <div className="flex flex-col">
                 <div className="py-12">
@@ -78,7 +68,6 @@ const Edit = ({ toto }) => {
                         <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                             <div className="px-2 py-6 md:px-6 py-6 bg-white border-b border-gray-200">
                                 <form onSubmit={submitForm}>
-
                                     <div className="mt-4">
                                         <Label htmlFor="name">
                                             Nom de la catégorie
@@ -88,18 +77,20 @@ const Edit = ({ toto }) => {
                                             type="text"
                                             value={`${namecyclistsCategory}`}
                                             className="mt-1 block w-full"
-                                            onChange={
-                                                event => {
-                                                    setNameCyclistsCategory(event.target.value);
-                                                }
-                                            }
+                                            onChange={event => {
+                                                setNameCyclistsCategory(
+                                                    event.target.value,
+                                                )
+                                            }}
                                             required
                                         />
                                     </div>
 
                                     <div className="flex items-center justify-end mt-4">
                                         <a href="/cyclistsCategories">retour</a>
-                                        <Button className="ml-4">Mettre à jour</Button>
+                                        <Button className="ml-4">
+                                            Mettre à jour
+                                        </Button>
                                     </div>
                                 </form>
                             </div>

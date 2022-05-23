@@ -24,12 +24,12 @@ const Ajouter = () => {
                 .post('/api/club', data, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 })
-                .then(res => {
+                .then(
                     router.push('/clubs')
-                })
+                )
                 .catch(error => {
                     // setErrors(error)
-                    // if (error.response.status !== 409) throw error
+                    if (error.response.status !== 409) throw error
                 })
         }
         ajouterClub()

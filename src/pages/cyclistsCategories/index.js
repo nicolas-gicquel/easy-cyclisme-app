@@ -32,9 +32,9 @@ const Competitions = () => {
     // console.log("l'id sport à supprimer est", sportID);
     axios
       .delete(`/api/cyclists_category/${cyclistsCategoryID}`)
-      .then(res => {
+      .then(
         url()
-      })
+      )
 
 
   }

@@ -25,10 +25,10 @@ const Edit = ({ toto }) => {
     const getClub = async () => {
         await axios
             .get(`http://localhost:8000/api/club/${toto}`)
-            .then(res => {
+            .then(
                 // console.log(res.data.data.name_club)
                 setNameClub(res.data.data.name_club)
-            })
+            )
             .catch(error => {
                 // if (error.response.status !== 409) throw error
                 console.log(error)

@@ -6,8 +6,7 @@ import { useRouter } from 'next/router'
 import Button from '@/components/Button'
 
 const Clubs = () => {
-    // Route
-    const router = useRouter()
+  
 
     // Hooks : useState, useEffect
     const [clubs, setClubs] = useState([])
@@ -28,10 +27,9 @@ const Clubs = () => {
     // Supprimer un sport
 
     const deleteClub = clubID => {
-        // console.log("l'id sport à supprimer est", sportID);
-        axios.delete(`/api/club/${clubID}`).then(res => {
+        axios.delete(`/api/club/${clubID}`).then(
             url()
-        })
+        )
     }
 
     return (
