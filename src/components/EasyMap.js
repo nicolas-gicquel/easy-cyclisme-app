@@ -3,7 +3,7 @@
 import {useState, useRef} from 'react'
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import useGeoLocation from "hooks/useGeoLocation";
+// import useGeoLocation from "hooks/useGeoLocation";
 
 
 function EasyMap({competitions}) {
@@ -11,7 +11,7 @@ function EasyMap({competitions}) {
   const ZOOM_LEVEL = 9;
   const mapRef = useRef();
 
-  const location = useGeoLocation()
+  // const location = useGeoLocation()
 
  
  
