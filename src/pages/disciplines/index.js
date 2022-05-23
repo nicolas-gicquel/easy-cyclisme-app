@@ -3,11 +3,9 @@ import Head from 'next/head'
 import axios from '@/lib/axios'
 import Button from '@/components/Button'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
+
 
 const Disciplines = () => {
-
-
     // Hooks : useState, useEffect
     const [disciplines, setDisciplines] = useState([])
 

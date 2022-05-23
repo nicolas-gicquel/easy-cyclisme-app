@@ -5,8 +5,6 @@ import { useState, useEffect } from 'react'
 import Button from '@/components/Button'
 
 const Clubs = () => {
-  
-
     // Hooks : useState, useEffect
     const [clubs, setClubs] = useState([])
 

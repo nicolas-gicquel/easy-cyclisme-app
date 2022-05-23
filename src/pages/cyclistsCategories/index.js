@@ -3,7 +3,7 @@ import Head from 'next/head'
 import axios from '@/lib/axios'
 import Button from '@/components/Button'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
+
 
 const Competitions = () => {
     // Hooks : useState, useEffect
@@ -54,27 +54,27 @@ const Competitions = () => {
 
                         <div className="p-6 bg-white border-b border-gray-200">
                             <div className="bg-white"></div>
-                            <table class="border-collapse table-auto w-full text-sm">
+                            <table className="border-collapse table-auto w-full text-sm">
                                 <thead>
                                     <tr>
-                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                        <th className="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
                                             Nom de la catégorie
                                         </th>
-                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-center">
+                                        <th className="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-center">
                                             Actions
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white dark:bg-slate-800">
+                                <tbody className="bg-white dark:bg-slate-800">
                                     {cyclistsCategories.map(
                                         cyclistsCategory => (
-                                            <tr>
-                                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                            <tr key={cyclistsCategory.id}>
+                                                <td className="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
                                                     {
                                                         cyclistsCategory.name_cyclists_category
                                                     }
                                                 </td>
-                                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                                <td className="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
                                                     <p className="mt-1 text-sm text-gray-500 text-center">
                                                         <a
                                                             href={`/cyclistsCategories/edit/${cyclistsCategory.id}`}>

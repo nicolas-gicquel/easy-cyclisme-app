@@ -26,7 +26,7 @@ const Dashboard = () => {
             <h2 className="text-center mb-7">Gestion de l'application</h2>
 
             <div className="container flex justify-evenly mx-auto ">
-                <div class="grid-col-3 grid-flow-col gap-8 columns-12 w-max flex justify-evenly">
+                <div className="grid-col-3 grid-flow-col gap-8 columns-12 w-max flex justify-evenly">
                     <div className="columns-12 bg-[url('/competition.jpg')] bg-cover h-96">
                         01
                     </div>

@@ -128,13 +128,13 @@ const Home = () => {
                                         </Label>
                                         <select
                                             id="discipline"
-                                            class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                            className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                             aria-label="Default select example">
                                             <option value="" selected>
                                                 Selectionner une discipline
                                             </option>
                                             {disciplines.map(discipline => (
-                                                <option value={discipline.id}>
+                                                <option key={discipline.id} value={discipline.id}>
                                                     {discipline.name_discipline}
                                                 </option>
                                             ))}
@@ -146,7 +146,7 @@ const Home = () => {
                                         </Label>
                                         <select
                                             id="cyclistsCategory"
-                                            class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                            className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                             aria-label="Default select example">
                                             <option value="" selected>
                                                 Selectionner une catégorie
@@ -154,6 +154,7 @@ const Home = () => {
                                             {cyclistsCategories.map(
                                                 cyclistsCategory => (
                                                     <option
+                                                        key={cyclistsCategory.id}
                                                         value={
                                                             cyclistsCategory.id
                                                         }>
@@ -189,8 +190,8 @@ const Home = () => {
                 </div>
             </div>
 
-            <div class="bg-slate-100 h-screen">
-                <div class="container mx-auto pt-24 md:pt-16 px-6">
+            <div className="bg-slate-100 h-screen">
+                <div className="container mx-auto pt-24 md:pt-16 px-6">
                     <div id="map">
                         <EasyMap competitions={competitions} />
                     </div>
@@ -202,36 +203,36 @@ const Home = () => {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 bg-white border-b border-gray-200">
-                            <table class="border-collapse table-auto w-full text-sm">
+                            <table className="border-collapse table-auto w-full text-sm">
                                 <thead>
                                     <tr>
-                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                        <th className="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
                                             Date
                                         </th>
-                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                        <th className="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
                                             Compétition
                                         </th>
-                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                        <th className="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
                                             Adresse du départ
                                         </th>
-                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                        <th className="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
                                             CP
                                         </th>
-                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
+                                        <th className="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">
                                             Ville
                                         </th>
-                                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-center">
+                                        <th className="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-center">
                                             Détails
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white dark:bg-slate-800">
+                                <tbody className="bg-white dark:bg-slate-800">
                                     {competitions.map(competition => (
-                                        <tr>
-                                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                        <tr key={competition.id}>
+                                            <td className="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
                                                 {competition.date_competition}
                                             </td>
-                                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                            <td className="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
                                                 <span className="uppercase">
                                                     {
                                                         competition.city_competition
@@ -239,18 +240,18 @@ const Home = () => {
                                                 </span>{' '}
                                                 - {competition.name_competition}
                                             </td>
-                                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                            <td className="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
                                                 {
                                                     competition.address_competition
                                                 }
                                             </td>
-                                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                            <td className="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
                                                 {
                                                     competition.club
                                                         .postal_code_competition
                                                 }
                                             </td>
-                                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
+                                            <td className="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">
                                                 {
                                                     competition.organization_details
                                                 }

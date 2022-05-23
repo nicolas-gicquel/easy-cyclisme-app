@@ -1,8 +1,5 @@
 import Head from 'next/head'
 import ApplicationLogo from '@/components/ApplicationLogo'
-import Input from '@/components/Input'
-import Label from '@/components/Label'
-import Button from '@/components/Button'
 import Footer from '@/components/Footer'
 
 const MentionsLegales = () => {

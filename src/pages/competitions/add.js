@@ -73,10 +73,7 @@ const Ajouter = () => {
                 .post('/api/competition', data, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 })
-
-                .then(
-                    router.push('/competitions')
-                )
+                .then(router.push('/competitions'))
                 .catch(error => {
                     // setErrors(error)
                     if (error.response.status !== 409) throw error
@@ -125,7 +122,9 @@ const Ajouter = () => {
                                                 Selectionner un club
                                             </option>
                                             {clubs.map(club => (
-                                                <option value={club.id}>
+                                                <option
+                                                    key={club.id}
+                                                    value={club.id}>
                                                     {club.name_club}
                                                 </option>
                                             ))}
@@ -143,7 +142,9 @@ const Ajouter = () => {
                                                 Selectionner une discipline
                                             </option>
                                             {disciplines.map(discipline => (
-                                                <option value={discipline.id}>
+                                                <option
+                                                    key={discipline.id}
+                                                    value={discipline.id}>
                                                     {discipline.name_discipline}
                                                 </option>
                                             ))}
@@ -163,11 +164,12 @@ const Ajouter = () => {
                                                         value={
                                                             cyclistsCategory.id
                                                         }
+                                                        key={cyclistsCategory.id}
                                                         id="flexCheckDefault"
                                                     />
                                                     <label
                                                         className="form-check-label inline-block text-gray-800"
-                                                        for="flexCheckDefault">
+                                                        htmlFor="flexCheckDefault">
                                                         {
                                                             cyclistsCategory.name_cyclists_category
                                                         }
