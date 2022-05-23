@@ -156,7 +156,7 @@ const Ajouter = () => {
                                         </Label>
                                         {cyclistsCategories.map(
                                             cyclistsCategory => (
-                                                <div className="form-check">
+                                                <div key={cyclistsCategory.id} className="form-check">
                                                     <input
                                                         name="cyclistsCategories"
                                                         className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
@@ -164,7 +164,6 @@ const Ajouter = () => {
                                                         value={
                                                             cyclistsCategory.id
                                                         }
-                                                        key={cyclistsCategory.id}
                                                         id="flexCheckDefault"
                                                     />
                                                     <label

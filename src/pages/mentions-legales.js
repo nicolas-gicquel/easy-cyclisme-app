@@ -10,33 +10,32 @@ const MentionsLegales = () => {
                 <meta name="description" content="Mentions légales"></meta>
             </Head>
 
-            <nav class="bg-white p-2 mt-0 w-full drop-shadow">
-                <div class="container mx-auto flex flex-wrap items-center">
-                    <div class="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
+            <nav className="bg-white p-2 mt-0 w-full drop-shadow">
+                <div className="container mx-auto flex flex-wrap items-center">
+                    <div className="flex w-full md:w-1/2 justify-center md:justify-start text-white font-extrabold">
                         <a
                             className="text-blue-900 underline font-semibold"
-                            class="text-gray-600 no-underline hover:no-underline"
                             href="#">
-                            <div class="flex flex-col text-2xl pl-2 sm:h-20 sm:flex-row sm:text-4xl">
+                            <div className="flex flex-col text-2xl pl-2 sm:h-20 sm:flex-row sm:text-4xl">
                                 <ApplicationLogo />
-                                <h1 class="text-center sm:mt-5">
+                                <h1 className="text-center sm:mt-5">
                                     Easy Cyclisme
                                 </h1>
                             </div>
                         </a>
                     </div>
-                    <div class="flex w-full pt-2 content-center justify-between md:w-1/2 md:justify-end">
-                        <ul class="list-reset flex justify-between flex-1 md:flex-none items-center">
-                            <li class="mr-3">
+                    <div className="flex w-full pt-2 content-center justify-between md:w-1/2 md:justify-end">
+                        <ul className="list-reset flex justify-between flex-1 md:flex-none items-center">
+                            <li className="mr-3">
                                 <a
-                                    class="inline-block py-2 px-4 text-gray-600 no-underline"
+                                    className="inline-block py-2 px-4 text-gray-600 no-underline"
                                     href="#">
                                     Accueil
                                 </a>
                             </li>
-                            <li class="mr-3">
+                            <li className="mr-3">
                                 <a
-                                    class="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
+                                    className="inline-block text-gray-600 no-underline hover:text-gray-200 hover:text-underline py-2 px-4"
                                     href="#">
                                     Contact
                                 </a>
@@ -46,8 +45,8 @@ const MentionsLegales = () => {
                 </div>
             </nav>
 
-            <div class="bg-slate-100 mb-6">
-                <div class="container mx-auto pt-24 md:pt-16 px-6">
+            <div className="bg-slate-100 mb-6">
+                <div className="container mx-auto pt-24 md:pt-16 px-6">
                     <h2 className="text-2xl text-blue-900 font-bold mt-6 mb-4">
                         Définitions
                     </h2>

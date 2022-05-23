@@ -36,7 +36,6 @@ const Register = () => {
                         </a>
                     </Link>
                 }>
-
                 {/* Validation Errors */}
                 <AuthValidationErrors className="mb-4" errors={errors} />
 

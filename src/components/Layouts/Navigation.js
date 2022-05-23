@@ -2,9 +2,7 @@ import ApplicationLogo from '@/components/ApplicationLogo'
 import Dropdown from '@/components/Dropdown'
 import Link from 'next/link'
 import NavLink from '@/components/NavLink'
-import ResponsiveNavLink, {
-    ResponsiveNavButton,
-} from '@/components/ResponsiveNavLink'
+import ResponsiveNavLink, { ResponsiveNavButton } from '@/components/ResponsiveNavLink'
 import { DropdownButton } from '@/components/DropdownLink'
 import { useAuth } from '@/hooks/auth'
 import { useRouter } from 'next/router'
@@ -34,8 +32,10 @@ const Navigation = ({ user }) => {
 
                         {/* Navigation Links */}
                         <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <NavLink href="/" active={router.pathname === '/'}>
-                                Easy Cyclisme
+                            <NavLink
+                                href="/dashboard"
+                                active={router.pathname === '/dashboard'}>
+                                Dashboard
                             </NavLink>
                             <NavLink
                                 href="/competitions"
@@ -54,9 +54,7 @@ const Navigation = ({ user }) => {
                             </NavLink>
                             <NavLink
                                 href="/cyclistsCategories"
-                                active={
-                                    router.pathname === '/cyclistsCategories'
-                                }>
+                                active={router.pathname === '/cyclistsCategories'}>
                                 Catégories
                             </NavLink>
                         </div>
@@ -85,6 +83,7 @@ const Navigation = ({ user }) => {
                                     </div>
                                 </button>
                             }>
+
                             {/* Authentication */}
                             <DropdownButton onClick={logout}>
                                 Logout

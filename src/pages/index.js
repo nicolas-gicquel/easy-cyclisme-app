@@ -134,7 +134,9 @@ const Home = () => {
                                                 Selectionner une discipline
                                             </option>
                                             {disciplines.map(discipline => (
-                                                <option key={discipline.id} value={discipline.id}>
+                                                <option
+                                                    key={discipline.id}
+                                                    value={discipline.id}>
                                                     {discipline.name_discipline}
                                                 </option>
                                             ))}
@@ -154,7 +156,9 @@ const Home = () => {
                                             {cyclistsCategories.map(
                                                 cyclistsCategory => (
                                                     <option
-                                                        key={cyclistsCategory.id}
+                                                        key={
+                                                            cyclistsCategory.id
+                                                        }
                                                         value={
                                                             cyclistsCategory.id
                                                         }>

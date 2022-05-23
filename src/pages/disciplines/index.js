@@ -4,7 +4,6 @@ import axios from '@/lib/axios'
 import Button from '@/components/Button'
 import { useState, useEffect } from 'react'
 
-
 const Disciplines = () => {
     // Hooks : useState, useEffect
     const [disciplines, setDisciplines] = useState([])
