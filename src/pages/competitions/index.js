@@ -62,7 +62,7 @@ const Competitions = () => {
 
             <div className="p-6 bg-white border-b border-gray-200">
 
-              <div className="bg-white"></div>
+              
               <table class="border-collapse table-auto w-full text-sm">
                 <thead>
                   <tr>

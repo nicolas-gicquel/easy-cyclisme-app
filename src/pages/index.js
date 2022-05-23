@@ -164,33 +164,42 @@ const Home = () => {
                 </div>
             </div>
 
-            <table class="border-collapse table-auto w-full text-sm">
-                <thead>
-                    <tr>
-                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Date</th>
-                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Compétition</th>
-                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Adresse du départ</th>
-                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">CP</th>
-                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Ville</th>
-                        <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-center">Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="bg-white dark:bg-slate-800">
-                    {competitions.map((competition) => (
+            <div className="py-12 bg-slate-100">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+
+            <div className="p-6 bg-white border-b border-gray-200">
+
+                <table class="border-collapse table-auto w-full text-sm">
+                    <thead>
                         <tr>
-                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.date_competition}</td>
-                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.name_competition}</td>
-                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.address_competition}</td>
-                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.postal_code_competition}</td>
-                            <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.city_competition}</td>
-
-
-
+                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Date</th>
+                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Compétition</th>
+                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Adresse du départ</th>
+                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">CP</th>
+                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Ville</th>
+                            <th class="border-b dark:border-slate-600 font-medium p-4 pr-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-center">Détails</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="bg-white dark:bg-slate-800">
+                        {competitions.map((competition) => (
+                            <tr>
+                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.date_competition}</td>
+                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400"><span className="uppercase">{competition.city_competition}</span> - {competition.name_competition}</td>
+                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.address_competition}</td>
+                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.club.name_club}</td>
+                                <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{competition.organization_details}</td>
 
+
+
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+            </div>
+            </div>
             <Footer />
 
         </>
