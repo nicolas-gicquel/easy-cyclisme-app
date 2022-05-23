@@ -1,4 +1,5 @@
-const Footer = props => (
+export default function Footer() {
+    return (
     <footer class="text-center text-white bg-neutral-900" >
         <div class=" p-6 w-full">
             {/* <div class=""> */}
@@ -15,7 +16,7 @@ const Footer = props => (
             © 2021 Copyright: <span>Nicolas  Gicquel</span> - <a class="text-white" href="/mentions-legales">Mentions Légales</a> - <a class="text-white" href="/politique-de-confidentialite">Politiques de confidentialité</a>
         </div>
     </footer>
-)
+    )
+}
 
-export default Footer
 

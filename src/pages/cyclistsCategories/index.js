@@ -4,7 +4,6 @@ import axios from '@/lib/axios'
 import Button from '@/components/Button'
 import { useState, useEffect } from 'react'
 
-
 const Competitions = () => {
     // Hooks : useState, useEffect
     const [cyclistsCategories, setCategories] = useState([])
