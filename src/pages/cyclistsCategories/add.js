@@ -31,7 +31,7 @@ const Ajouter = () => {
                 })
                 .then(router.push('/cyclistsCategories'))
                 .catch(error => {
-                    setErrors(error)
+                    // setErrors(error)
                     if (error.response.status !== 409) throw error
                 })
         }

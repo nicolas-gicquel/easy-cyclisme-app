@@ -74,11 +74,11 @@ const Ajouter = () => {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 })
 
-                .then(res => {
+                .then(
                     router.push('/competitions')
-                })
+                )
                 .catch(error => {
-                    setErrors(error)
+                    // setErrors(error)
                     if (error.response.status !== 409) throw error
                 })
         }
@@ -119,7 +119,7 @@ const Ajouter = () => {
                                         </Label>
                                         <select
                                             name="club_id"
-                                            class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                            className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                             aria-label="Default select example">
                                             <option selected>
                                                 Selectionner un club
@@ -137,7 +137,7 @@ const Ajouter = () => {
                                         </Label>
                                         <select
                                             name="discipline_id"
-                                            class="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                            className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                             aria-label="Default select example">
                                             <option selected>
                                                 Selectionner une discipline
@@ -155,10 +155,10 @@ const Ajouter = () => {
                                         </Label>
                                         {cyclistsCategories.map(
                                             cyclistsCategory => (
-                                                <div class="form-check">
+                                                <div className="form-check">
                                                     <input
                                                         name="cyclistsCategories"
-                                                        class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                                        className="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
                                                         type="checkbox"
                                                         value={
                                                             cyclistsCategory.id
@@ -166,7 +166,7 @@ const Ajouter = () => {
                                                         id="flexCheckDefault"
                                                     />
                                                     <label
-                                                        class="form-check-label inline-block text-gray-800"
+                                                        className="form-check-label inline-block text-gray-800"
                                                         for="flexCheckDefault">
                                                         {
                                                             cyclistsCategory.name_cyclists_category

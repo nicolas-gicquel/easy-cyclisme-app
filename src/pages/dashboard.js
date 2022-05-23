@@ -9,7 +9,6 @@ const Dashboard = () => {
                     Tableau de bord
                 </h2>
             }>
-
             <Head>
                 <title>Administration Easy Admin</title>
             </Head>
@@ -24,15 +23,20 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            <h2 className='text-center mb-7'>Gestion de l'application</h2>
+            <h2 className="text-center mb-7">Gestion de l'application</h2>
 
             <div className="container flex justify-evenly mx-auto ">
                 <div class="grid-col-3 grid-flow-col gap-8 columns-12 w-max flex justify-evenly">
-                    <div className="columns-12 bg-[url('/competition.jpg')] bg-cover h-96">01</div>
-                    <div className="columns-12 bg-[url('/img/hero-pattern.svg')]">09</div>
-                    <div className="columns-12 bg-[url('/img/hero-pattern.svg')]">09</div>
+                    <div className="columns-12 bg-[url('/competition.jpg')] bg-cover h-96">
+                        01
+                    </div>
+                    <div className="columns-12 bg-[url('/img/hero-pattern.svg')]">
+                        09
+                    </div>
+                    <div className="columns-12 bg-[url('/img/hero-pattern.svg')]">
+                        09
+                    </div>
                 </div>
-
             </div>
         </AppLayout>
     )

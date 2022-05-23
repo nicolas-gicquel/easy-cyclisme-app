@@ -2,7 +2,6 @@ import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import axios from '@/lib/axios'
 import { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
 import Button from '@/components/Button'
 
 const Clubs = () => {
@@ -27,9 +26,7 @@ const Clubs = () => {
     // Supprimer un sport
 
     const deleteClub = clubID => {
-        axios.delete(`/api/club/${clubID}`).then(
-            url()
-        )
+        axios.delete(`/api/club/${clubID}`).then(url())
     }
 
     return (

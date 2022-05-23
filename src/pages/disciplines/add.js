@@ -1,7 +1,6 @@
 import AppLayout from '@/components/Layouts/AppLayout'
 import Head from 'next/head'
 import axios from '@/lib/axios'
-import { useState } from 'react'
 import Input from '@/components/Input'
 import Label from '@/components/Label'
 import Button from '@/components/Button'
@@ -32,7 +31,7 @@ const Ajouter = () => {
                 })
                 .then(router.push('/disciplines'))
                 .catch(error => {
-                    setErrors(error)
+                    // setErrors(error)
                     if (error.response.status !== 409) throw error
                 })
         }

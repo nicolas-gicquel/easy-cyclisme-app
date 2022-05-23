@@ -24,9 +24,7 @@ const Ajouter = () => {
                 .post('/api/club', data, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 })
-                .then(
-                    router.push('/clubs')
-                )
+                .then(router.push('/clubs'))
                 .catch(error => {
                     // setErrors(error)
                     if (error.response.status !== 409) throw error

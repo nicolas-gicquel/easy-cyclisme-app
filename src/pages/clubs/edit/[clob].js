@@ -43,9 +43,7 @@ const Edit = ({ toto }) => {
                 .put(`/api/club/${toto}`, {
                     name_club: nameClub,
                 })
-                .then(res => {
-                    router.push('/clubs')
-                })
+                .then(router.push('/clubs'))
                 .catch(error => {
                     // setErrors(error)
                     if (error.response.status !== 409) throw error

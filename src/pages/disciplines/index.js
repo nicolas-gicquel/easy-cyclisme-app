@@ -6,8 +6,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 const Disciplines = () => {
-    // Route
-    const router = useRouter()
+
 
     // Hooks : useState, useEffect
     const [disciplines, setDisciplines] = useState([])
