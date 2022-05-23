@@ -11,6 +11,7 @@ module.exports = {
         'eslint:recommended',
         'plugin:react/recommended',
         'plugin:prettier/recommended',
+        'react-app',
     ],
     parserOptions: {
         ecmaFeatures: {
@@ -38,6 +39,6 @@ module.exports = {
         'react/react-in-jsx-scope': 0,
         'linebreak-style': ['error', 'unix'],
         semi: ['error', 'never'],
-        'prettier/prettier': ['error', { "endOfLine": "auto" }, { usePrettierrc: true }],
+        'prettier/prettier': "error",
     },
 }
