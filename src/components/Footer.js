@@ -22,7 +22,7 @@ export default function Footer() {
                     Mentions Légales
                 </a>{' '}
                 -{' '}
-                <a class="text-white" href="/politique-de-confidentialite">
+                <a className="text-white" href="/politique-de-confidentialite">
                     Politiques de confidentialité
                 </a>
             </div>
