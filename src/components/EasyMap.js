@@ -23,6 +23,7 @@ function EasyMap({ competitions }) {
             />
             {competitions.map(competition => (
                 <Marker
+                    key={competition.id}
                     position={[
                         competition.lat_competition,
                         competition.lon_competition,

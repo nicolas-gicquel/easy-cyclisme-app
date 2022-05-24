@@ -2,7 +2,9 @@ import ApplicationLogo from '@/components/ApplicationLogo'
 import Dropdown from '@/components/Dropdown'
 import Link from 'next/link'
 import NavLink from '@/components/NavLink'
-import ResponsiveNavLink, { ResponsiveNavButton } from '@/components/ResponsiveNavLink'
+import ResponsiveNavLink, {
+    ResponsiveNavButton,
+} from '@/components/ResponsiveNavLink'
 import { DropdownButton } from '@/components/DropdownLink'
 import { useAuth } from '@/hooks/auth'
 import { useRouter } from 'next/router'
@@ -54,7 +56,9 @@ const Navigation = ({ user }) => {
                             </NavLink>
                             <NavLink
                                 href="/cyclistsCategories"
-                                active={router.pathname === '/cyclistsCategories'}>
+                                active={
+                                    router.pathname === '/cyclistsCategories'
+                                }>
                                 Catégories
                             </NavLink>
                         </div>
@@ -83,7 +87,6 @@ const Navigation = ({ user }) => {
                                     </div>
                                 </button>
                             }>
-
                             {/* Authentication */}
                             <DropdownButton onClick={logout}>
                                 Logout
